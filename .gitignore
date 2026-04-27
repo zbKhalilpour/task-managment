@@ -1,0 +1,7 @@
+back/node_modules
+back/.env
+back/dist/
+back/.vscode
+back/prisma/migrations
+note for back.txt
+back - backupForAuthModule/
