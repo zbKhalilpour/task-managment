@@ -3,7 +3,7 @@ import { prisma } from "../config/prisma"
 import { AppError } from "../utils/AppError";
 
 type creatTaskInput={title: string, description: string }
-type updateTaskInput=  { text?: string; assignedTo?: string }
+type updateTaskInput=  { text?: string, assignedTo?: string , role?:string}
 
 
 export const tasksService={
@@ -44,7 +44,7 @@ export const tasksService={
             })
         }
         
-        if (input.assignedTo) {
+        if (input.assignedTo && input.role ==="LEADER") {
             const assignedUser = await prisma.user.findUnique({
                 where: { email: input.assignedTo }
             });

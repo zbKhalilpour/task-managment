@@ -8,16 +8,19 @@ export  const tasksRouter=Router()
 tasksRouter.use(requiredAuth)
 
 //read tasks
-tasksRouter.get("/",requiredRole("LEADER"),tasksController.listAllTasks)
 tasksRouter.get("/mytasks",requiredRole("USER","LEADER"),tasksController.listMine)
-
 //update task
 tasksRouter.patch("/:id",tasksController.updateTask)
 
-//create task
-tasksRouter.post("/",requiredRole("LEADER"), tasksController.createTask)
 
+
+
+tasksRouter.use(requiredRole("LEADER"))
+//read tasks
+tasksRouter.get("/", tasksController.listAllTasks)
+//create task
+tasksRouter.post("/", tasksController.createTask)
 //delete task
-tasksRouter.delete("/:id",requiredRole("LEADER"),tasksController.deleteTask)
+tasksRouter.delete("/:id", tasksController.deleteTask)
 
 
