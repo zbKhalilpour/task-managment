@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { tasksRouter } from "./routes/taskes.rout";
 import cookieParser from "cookie-parser"
 import { notFound } from "./middlewares/notFound";
+import { usersRouter } from "./routes/users.rout";
 
 
 export const app=express()
@@ -21,7 +22,7 @@ app.use(cookieParser());
 
 app.use("/auth" , authRouter)
 app.use("/tasks" , tasksRouter)
-
+app.use("/users",usersRouter)
 
 
 
