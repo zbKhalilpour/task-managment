@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser"
 import { notFound } from "./middlewares/notFound";
 import { usersRouter } from "./routes/users.rout";
 
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swager";
 
 export const app=express()
 
@@ -24,7 +26,8 @@ app.use("/auth" , authRouter)
 app.use("/tasks" , tasksRouter)
 app.use("/users",usersRouter)
 
-
+// Swagger UI Path
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //errorHandler middleware
 app.use(notFound);
